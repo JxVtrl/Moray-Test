@@ -4,11 +4,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 export const initAPIMock = async () => {
-  const { worker } = await import("./server/worker")
-  await worker.start({
-    onUnhandledRequest: "bypass",
-  })
-}
+  try {
+    const { worker } = await import('./server/worker');
+    await worker.start({
+      onUnhandledRequest: 'bypass',
+    });
+    console.info('API mock inicializado com sucesso');
+  } catch (error) {
+    console.error('Falha ao iniciar o API mock:', error);
+  }
+};
 
 const initApplication = async () => {
   await initAPIMock()

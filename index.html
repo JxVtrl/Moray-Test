@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <!-- Configuração básica -->
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moray</title>
+
+    <!-- SEO essencial -->
+    <title>Moray.Ai - Mapeamento Inteligente da População</title>
+    <meta
+      name="description"
+      content="Explore dados populacionais detalhados com Moray.Ai, um mapa interativo que mostra a evolução demográfica por bairro."
+    />
+    <meta
+      name="keywords"
+      content="mapa interativo, evolução populacional, bairros, demografia, Moray.Ai"
+    />
+    <meta name="author" content="João" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://moray.ai" />
+
+    <!-- Open Graph para redes sociais -->
+    <meta property="og:title" content="Moray.Ai - Mapeamento Populacional Interativo" />
+    <meta property="og:description" content="Veja a evolução demográfica dos bairros com nosso mapa interativo." />
+    <meta property="og:image" content="https://moray.ai/assets/map-preview.jpg" />
+    <meta property="og:url" content="https://moray.ai" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Moray.Ai - Mapeamento Populacional Interativo" />
+    <meta name="twitter:description" content="Mapeie a evolução populacional dos bairros com precisão." />
+    <meta name="twitter:image" content="https://moray.ai/assets/map-preview.jpg" />
+    <meta name="twitter:site" content="@MorayAI" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Preload de recursos essenciais -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="/assets/fonts/custom-font.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <!-- Segurança -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+
+    <!-- Google Analytics
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXX-Y');
+    </script> -->
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      Para visualizar este site corretamente, habilite o JavaScript em seu navegador.
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

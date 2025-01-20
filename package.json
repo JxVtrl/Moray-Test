@@ -1,14 +1,23 @@
 {
-  "name": "vite-react-starter",
+  "name": "moray-ai-map",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Mapa interativo da Moray.Ai com plots de bairros e evolução populacional.",
+  "author": "João",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "serve": "vite preview --port 5000",
+    "clean": "rm -rf node_modules dist .turbo",
+    "analyze": "vite build --mode analyze"
   },
   "dependencies": {
     "axios": "^1.6.7",
@@ -26,17 +35,43 @@
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "msw": "^2.2.2",
+    "prettier": "^3.1.0",
     "sass": "^1.71.1",
     "typescript": "^5.3.3",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "vitest": "^1.0.0"
   },
   "msw": {
     "workerDirectory": [
       "public"
     ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"]
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 80
   }
 }
