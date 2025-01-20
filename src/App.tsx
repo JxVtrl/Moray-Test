@@ -1,14 +1,14 @@
-import { GeoJSON } from 'react-leaflet/GeoJSON';
-import { MapContainer } from 'react-leaflet/MapContainer';
-import { TileLayer } from 'react-leaflet/TileLayer';
+import { GeoJSON } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet';
+import { TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import { Toast } from './component/Toast/Toast.component';
 
-function App() {
+function App(): React.ReactNode {
   const [geojson, setGeoJson] = useState(null)
-  const [populationJson, setPopulationJson] = useState(null)
-  const [clickedAreaPopulation, setClickedAreaPopulation]= useState(null)
+  const [populationJson, setPopulationJson] = useState<any[]>([])
+  const [clickedAreaPopulation, setClickedAreaPopulation]= useState<any[] | null>(null)
 
   useEffect(() => {
     fetch('/bairros-geojson')
@@ -65,13 +65,17 @@ function App() {
 
                 console.log('populationJson', populationJson)
 
-                console.log(
-                  populationJson.filter(item => item.id_geometria === feature.properties.id
-                  ))
+                if (populationJson && 
+                  Array.isArray(populationJson)
+                ) {
+                  console.log(
+                    populationJson.filter(item => item.id_geometria === feature.properties.id
+                    ))
 
-                setClickedAreaPopulation(
-                  populationJson.filter(item => item.id_geometria === feature.properties.id
-                  ))
+                  setClickedAreaPopulation(
+                    populationJson.filter(item => item.id_geometria === feature.properties.id
+                    ))
+                }
               },
             }}
           />
@@ -82,7 +86,6 @@ function App() {
         {clickedAreaPopulation && (
           <Toast
             evolucao_bairro={clickedAreaPopulation}
-            close={closeToast}
           />
         )}
       </MapContainer>
