@@ -8,11 +8,16 @@ import { useToast } from '../context/ToastContext';
 import { mergeGeoJsonWithPopulation } from '../utils/dataProcessor';
 import { GeoJsonResponse, MergedGeoJsonResponse } from '../interfaces/GeojsonPopulation';
 import ThreeLayer from '../component/ThreeLayer/ThreeLayer.component';
+import MapMenu from '../component/MapMenu/MapMenu.component';
 
 const MapViewPage: React.FC = () => {
- const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
+  const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
 
   const { setClickedAreaPopulation, clickedAreaPopulation } = useToast()
+
+  const [tileLayerUrl, setTileLayerUrl] = useState<string>('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,36 +34,62 @@ const MapViewPage: React.FC = () => {
   }, []);
 
 
-  return  <MapContainer
-      style={{ height: '100vh' }}
-      bounds={[[-23.234708, -45.928813], [-23.198917, -45.900761]]}
-      zoom={15}
-    >
-      <TileLayer
-        url="https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=BcCw9iWXRyBExU9XfTBr"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
+  return (<MapContainer
+    style={{
+      height: '100vh',
+      borderRadius: '20px', // Arredondamento nas bordas
+      overflow: 'hidden',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.2)', // Sombra elegante,
+      transition: 'opacity 1s ease-in-out',
+    }}
+    bounds={[[-23.234708, -45.928813], [-23.198917, -45.900761]]}
+    zoom={15}
+    zoomControl={false} // Remove o zoom padrão para estilizar manualmente
+  >
+    <TileLayer
+      url={tileLayerUrl}
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+    />
 
-      {geojson && (
-        <GeoJSON
-          data={geojson as GeoJsonResponse}
-          style={{ color: '#6c58ff' }}
-          eventHandlers={{
-            click: (event) => {
-              const feature = event.sourceTarget.feature;
-              console.log('Feature clicada:', feature.properties);
-              
-              if (feature.properties.populacao) {
-                setClickedAreaPopulation(feature.properties.populacao);
-              } else {
-                console.warn('Nenhuma população encontrada para esta área');
-              }
-            },
-          }}
-        />
-      )}
-       {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <ThreeLayer />}
-    </MapContainer>;
+    {geojson && (
+      <GeoJSON
+        data={geojson as GeoJsonResponse}
+        style={() => ({
+          color: '#6c58ff', // Cor padrão
+          weight: 1.5,      // Espessura das linhas
+          fillColor: '#6c58ff',
+          fillOpacity: 0.4, // Transparência leve para elegância
+        })}
+        eventHandlers={{
+          mouseover: (event) => {
+            event.target.setStyle({
+              fillColor: '#ff6600', // Destacar ao passar o mouse
+              fillOpacity: 0.7,
+            });
+          },
+          mouseout: (event) => {
+            event.target.setStyle({
+              fillColor: '#6c58ff',
+              fillOpacity: 0.4,
+            });
+          },
+          click: (event) => {
+            const feature = event.sourceTarget.feature;
+            console.log('Feature clicada:', feature.properties);
+
+            if (feature.properties.populacao) {
+              setClickedAreaPopulation(feature.properties.populacao);
+            } else {
+              console.warn('Nenhuma população encontrada para esta área');
+            }
+          },
+        }}
+      />
+    )}
+    {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <ThreeLayer />}
+
+    <MapMenu setTileLayer={setTileLayerUrl} />
+  </MapContainer>);
 }
 
 export default MapViewPage;
