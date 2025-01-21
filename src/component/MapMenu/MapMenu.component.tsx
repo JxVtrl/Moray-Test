@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMap } from 'react-leaflet';
 
 const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ setTileLayer }) => {
@@ -7,27 +7,53 @@ const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ setTileLay
     const handleZoomIn = () => map.zoomIn();
     const handleZoomOut = () => map.zoomOut();
 
-    const apiKey = '7980080c-94d2-48da-833b-88928603678a'; // Substitua pela sua chave de API
-
     const handleThemeChange = (theme: string) => {
         const baseUrl = 'https://tiles.stadiamaps.com/tiles/';
         const themeUrls: { [key: string]: string } = {
-            normal: `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
-            light: `${baseUrl}stamen_toner_lite/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
-            dark: `${baseUrl}stamen_toner/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
-            minimal: `${baseUrl}stamen_toner_background/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
+            normal: `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png`,
+            light: `${baseUrl}stamen_toner_lite/{z}/{x}/{y}{r}.png`,
+            dark: `${baseUrl}stamen_toner/{z}/{x}/{y}{r}.png`,
+            minimal: `${baseUrl}stamen_toner_background/{z}/{x}/{y}{r}.png`,
         };
         setTileLayer(themeUrls[theme]);
     };
 
+    const buttons = [
+        {
+            click: () => handleThemeChange('normal'),
+            text: 'Normal',
+        },
+        {
+            click: () => handleThemeChange('light'),
+            text: 'Light',
+        },
+        {
+            click: () => handleThemeChange('dark'),
+            text: 'Dark',
+        },
+        {
+            click: () => handleThemeChange('minimal'),
+            text: 'Minimal',
+        },
+        {
+            click: handleZoomIn,
+            text: '+',
+        },
+        {
+            click: handleZoomOut,
+            text: '-',
+        },
+    ]
+
+
+
     return (
         <div style={styles.footerMenu}>
-            <button onClick={() => handleThemeChange('normal')}>Normal</button>
-            <button onClick={() => handleThemeChange('light')}>Light</button>
-            <button onClick={() => handleThemeChange('dark')}>Dark</button>
-            <button onClick={() => handleThemeChange('minimal')}>Minimal</button>
-            <button onClick={handleZoomIn}>+</button>
-            <button onClick={handleZoomOut}>-</button>
+            {buttons.map((button, index) => (
+                <button key={index} onClick={button.click}>
+                    {button.text}
+                </button>
+            ))}
         </div>
     );
 };
