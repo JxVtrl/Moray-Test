@@ -2,6 +2,7 @@ import './main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { ToastProvider } from './context/ToastContext';
 
 export const initAPIMock = async () => {
   try {
@@ -21,7 +22,9 @@ const initApplication = async () => {
   if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
       <React.StrictMode>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </React.StrictMode>
     );
   } else {

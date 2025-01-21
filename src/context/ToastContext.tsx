@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface ToastContextType {
   clickedAreaPopulation: any[] | null;
+  setClickedAreaPopulation: (populationData: any[]) => void
   showToast: (populationData: any[]) => void;
   hideToast: () => void;
 }
@@ -24,7 +25,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
   };
 
   return (
-    <ToastContext.Provider value={{ clickedAreaPopulation, showToast, hideToast }}>
+    <ToastContext.Provider value={{ clickedAreaPopulation, showToast, hideToast,setClickedAreaPopulation }}>
       {children}
     </ToastContext.Provider>
   );
