@@ -1,13 +1,8 @@
+import { ToastProps } from 'interfaces';
 import React from 'react';
 
-export const Toast = ({
+export const Toast: React.FC<ToastProps> = ({
     evolucao_bairro = [],
-}: {
-    evolucao_bairro: {
-        id_geometria: number
-        ano: string
-        populacao: number
-    }[]
 }) => {
     return <div
         style={{

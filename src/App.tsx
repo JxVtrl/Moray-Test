@@ -4,45 +4,31 @@ import { TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import { Toast } from './component/Toast/Toast.component';
+import { fetchGeoJson, fetchPopulationData } from './services/apiService';
+import { ToastProvider } from './context/ToastContext';
+import { mergeGeoJsonWithPopulation } from './utils/dataProcessor';
+import { GeoJsonResponse, MergedGeoJsonResponse } from './interfaces/GeojsonPopulation';
 
 function App(): React.ReactNode {
-  const [geojson, setGeoJson] = useState(null)
-  const [populationJson, setPopulationJson] = useState<any[]>([])
-  const [clickedAreaPopulation, setClickedAreaPopulation]= useState<any[] | null>(null)
+  const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
+  const [clickedAreaPopulation, setClickedAreaPopulation] = useState<any[] | null>(null)
 
   useEffect(() => {
-    fetch('/bairros-geojson')
-      .then((res) => {
-        return res.json();
-      })
-      .then((geoJson) => {
-        console.log('Response', geoJson)
-        setGeoJson(geoJson);
-      }).catch(err => console.log('err', err))
-
-
-    callPopulationAreaHistory()
-  }, [])
-
-
-  const callPopulationAreaHistory = () => {
-    fetch('/populacao').then((res) => {
-      return res.json();
-    })
-      .then((population) => {
-        console.log('Response', population)
-        setPopulationJson(population)
-      }).catch(err => console.log('err', err))
-  }
-
-
-  const closeToast = () => {
-    setClickedAreaPopulation(null)
-  }
-
+    const fetchData = async () => {
+      try {
+        const geoJsonData = await fetchGeoJson();
+        const populationData = await fetchPopulationData();
+        const mergedData = mergeGeoJsonWithPopulation(geoJsonData, populationData);
+        setGeoJson(mergedData);
+      } catch (error) {
+        console.error('Error processing data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <>
+    <ToastProvider>
       <MapContainer
         style={{ height: '100vh' }}
         bounds={[[-23.234708, -45.928813], [-23.198917, -45.900761]]}
@@ -55,33 +41,16 @@ function App(): React.ReactNode {
 
         {geojson && (
           <GeoJSON
-            data={geojson}
+            data={geojson as GeoJsonResponse}
             style={{ color: '#6c58ff' }}
             eventHandlers={{
               click: (event) => {
-                console.log('feature (bairro):', event.sourceTarget.feature);
-
-                const feature = event.sourceTarget.feature
-
-                console.log('populationJson', populationJson)
-
-                if (populationJson && 
-                  Array.isArray(populationJson)
-                ) {
-                  console.log(
-                    populationJson.filter(item => item.id_geometria === feature.properties.id
-                    ))
-
-                  setClickedAreaPopulation(
-                    populationJson.filter(item => item.id_geometria === feature.properties.id
-                    ))
-                }
+                const feature = event.sourceTarget.feature;
+                setClickedAreaPopulation(feature.properties.populacao || []);
               },
             }}
           />
         )}
-
-
 
         {clickedAreaPopulation && (
           <Toast
@@ -89,7 +58,7 @@ function App(): React.ReactNode {
           />
         )}
       </MapContainer>
-    </>
+    </ToastProvider>
   );
 }
 
