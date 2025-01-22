@@ -7,7 +7,7 @@ import { fetchGeoJson, fetchPopulationData } from '../../services';
 import { useToast } from '../../context';
 import { mergeGeoJsonWithPopulation } from '../../utils';
 import { GeoJsonResponse, MergedGeoJsonResponse } from '../../interfaces';
-import { EvolutionChart, MapMenu } from '../../component';
+import { EvolutionChart, MapMenu, Logo } from '../../component';
 
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
@@ -56,6 +56,8 @@ export const MapViewPage: React.FC = () => {
           weight: 1.5,
           fillColor: 'rgb(109, 204, 101)',
           fillOpacity: 0.4,
+          transition: 'fillColor 0.5s',
+
         })}
         onEachFeature={(feature, layer) => {
           layer.on({
@@ -73,8 +75,6 @@ export const MapViewPage: React.FC = () => {
               });
             },
             click: (event) => {
-              console.log('Feature clicada:', feature.properties);
-
               if (feature.properties.populacao) {
                 setClickedAreaPopulation(feature.properties.populacao);
               } else {
@@ -89,5 +89,7 @@ export const MapViewPage: React.FC = () => {
     {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <EvolutionChart />}
 
     <MapMenu setTileLayer={setTileLayerUrl} />
+
+     <Logo />
   </MapContainer>);
 }
