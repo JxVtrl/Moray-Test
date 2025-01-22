@@ -1,19 +1,20 @@
 import { GeoJSON } from 'react-leaflet';
-import { MapContainer, Tooltip } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import { fetchGeoJson, fetchPopulationData } from '../../services';
-import { useToast } from '../../context';
+import { useApp, useToast } from '../../context';
 import { mergeGeoJsonWithPopulation } from '../../utils';
 import { GeoJsonResponse, MergedGeoJsonResponse } from '../../interfaces';
 import { EvolutionChart, MapMenu, Logo, BackButton } from '../../component';
+import InstructionsModal from '../../component/InstructionsModal/InstructionsModal.component';
 
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null);
 
   const { setClickedArea, clickedArea } = useToast();
-
+const {showInstructionsModal}=useApp()
   const [tileLayerUrl, setTileLayerUrl] = useState<string>(
     'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
   );
@@ -115,6 +116,12 @@ export const MapViewPage: React.FC = () => {
       {clickedArea && clickedArea.properties.populacao.length > 0 && <EvolutionChart />}
 
       {clickedArea === null && <MapMenu setTileLayer={setTileLayerUrl} />}
+
+      {
+        showInstructionsModal && (
+          <InstructionsModal/>
+)
+      }
 
       <Logo />
       <BackButton />
