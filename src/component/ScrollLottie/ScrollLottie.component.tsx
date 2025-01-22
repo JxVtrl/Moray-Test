@@ -1,10 +1,30 @@
 import React from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import './ScrollLottie.scss';
-const ScrollLottie: React.FC = () => {
-    return (
-        <Player src='/lottie/scroll.json' className='scroll-lottie'/>
+import { MouseScrollWheel } from '../../component/svg-components/MouseScrollWheel/MouseScrollWheel.component';
+export const ScrollSvg: React.FC = () => {
+  return (
+    <div style={{
+        height: '35px',  
+      marginTop: '15vh',
+        marginBottom: '25vh',
+
+      }}>
+      
+        <MouseScrollWheel/>
+      </div>
   );
 }
 
-export default ScrollLottie;
+export const ScrollLottie: React.FC = () => {
+  return (
+    <div className='scroll_lottie'>
+      <Player
+        autoplay
+        loop
+        src="/lottie/scroll.json"
+        style={{ height: '100%', width: '100%' }}
+      />
+    </div>
+  );
+}
