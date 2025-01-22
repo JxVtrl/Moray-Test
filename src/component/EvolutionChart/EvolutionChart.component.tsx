@@ -11,12 +11,17 @@ export const EvolutionChart: React.FC = () => {
 
   if (!clickedArea || clickedArea.properties.populacao.length === 0) return null;
 
+  interface PopulationData {
+    ano: number;
+    populacao: number;
+  }
+
   const data = {
-    labels: clickedArea.properties.populacao.map((item) => item.ano),
+    labels: clickedArea.properties.populacao.map((item: PopulationData) => item.ano),
     datasets: [
       {
         label: 'População',
-        data: clickedArea.properties.populacao.map((item) => item.populacao),
+        data: clickedArea.properties.populacao.map((item: PopulationData) => item.populacao),
         backgroundColor: 'rgba(54, 162, 235, 0.6)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 2,
