@@ -11,22 +11,13 @@
 
 
     > div {
-        height: 500px !important;
-        width: 100%;
-
-
-        @media (max-width: 768px) {
-            height: 150px !important;
-        }
+      height: 500px !important;
+      width: 100%;
     }
 
   canvas {
     display: block;
     height: 500px;
-
-    @media (max-width: 768px) {
-      height: 150px;
-    }
   }
 
   @media (max-width: 768px) {

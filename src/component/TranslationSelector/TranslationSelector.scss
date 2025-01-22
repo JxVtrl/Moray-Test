@@ -1,15 +1,18 @@
 .translation-selector {
-  position: relative;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
   display: flex;
   font-family: Arial, sans-serif;
 
-    justify-self: end;
-    align-self: end;
+  justify-self: end;
+  align-self: end;
 
-    @media (max-width: 768px) {
-        justify-self: unset;
-        align-self: unset;
-    }
+  @media (max-width: 768px) {
+    justify-self: unset;
+    align-self: unset;
+  }
 
   select {
     appearance: none;

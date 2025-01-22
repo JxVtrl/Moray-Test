@@ -12,7 +12,7 @@ export const RotatingLogo: React.FC = () => {
   useEffect(() => {
     if (logoRef.current) {
       // Adjust scale for different screen sizes
-      const scaleFactor = viewport.width < 768 ? 0.03 : 0.05;
+      const scaleFactor = viewport.width < 768 ? 0.012 : 0.05;
       logoRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
       // Center the model based on bounding box
@@ -28,7 +28,7 @@ export const RotatingLogo: React.FC = () => {
 
   useFrame(() => {
     if (logoRef.current) {
-      logoRef.current.rotation.y += 0.005; // Continuous rotation
+      logoRef.current.rotation.y += 0.0025; // Continuous rotation
     }
   });
 
@@ -37,12 +37,12 @@ export const RotatingLogo: React.FC = () => {
 
 export const Logo3D: React.FC = () => {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
-  const [fov, setFov] = useState(window.innerWidth < 768 ? 25 : 40);
+  const [fov, setFov] = useState(window.innerWidth < 768 ? 20 : 15);
 
   // Function to update FOV based on screen size
   const handleResize = () => {
     if (canvasContainerRef.current) {
-      setFov(window.innerWidth < 768 ? 25 : 40);
+      setFov(window.innerWidth < 768 ? 20 : 15);
 
       const width = canvasContainerRef.current.clientWidth;
       const height = canvasContainerRef.current.clientHeight;
