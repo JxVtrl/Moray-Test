@@ -1,14 +1,11 @@
 {
-  "welcome": "Welcome to Teste Moray.Ai",
+  "welcome": "Welcome to the Test of Moray.Ai",
   "description": "This is a test to evaluate front-end skills. Click above to start.",
-
-    "start": "Start",
-    "about-me": "About me",
-    "contact": "Contact",
-    "legal-rights": "All rights reserved",
-    "believe-on-tech": "I believe that technology has the power to transform lives and solve real problems, making the world more connected and accessible. My purpose is to use software development to simplify the complex and create digital experiences that positively impact people.",
-    "make-with-tools": "I do this using modern tools like Next.js, React.js, TypeScript, Docker and Azure DevOps, always focused on collaboration, scalability and a user-centered approach.",
-    "showing-results": "As a result, I develop robust and intuitive digital solutions that help companies stand out in the market, while providing fast, efficient and engaging experiences for end users. In essence, I turn ideas into tools that connect, solve and inspire."
-
-
+  "start": "Start",
+  "about-me": "About me",
+  "contact": "Contact",
+  "legal-rights": "All rights reserved",
+  "believe-on-tech": "I believe that technology has the power to transform lives and solve real problems, making the world more connected and accessible. My purpose is to use software development to simplify the complex and create digital experiences that positively impact people.",
+  "make-with-tools": "I do this using modern tools like Next.js, React.js, TypeScript, Docker and Azure DevOps, always focused on collaboration, scalability and a user-centered approach.",
+  "showing-results": "As a result, I develop robust and intuitive digital solutions that help companies stand out in the market, while providing fast, efficient and engaging experiences for end users. In essence, I turn ideas into tools that connect, solve and inspire."
 }
