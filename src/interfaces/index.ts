@@ -1,1 +1,2 @@
-export { ToastProps } from './Toast.interface'
+export * from './Toast.interface'
+export * from './GeojsonPopulation'

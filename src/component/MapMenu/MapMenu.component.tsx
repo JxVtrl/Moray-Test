@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMap } from 'react-leaflet';
 
-const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ setTileLayer }) => {
+export const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ setTileLayer }) => {
     const map = useMap();
 
     const handleZoomIn = () => map.zoomIn();
@@ -77,4 +77,3 @@ const styles: { footerMenu: CSSProperties } = {
     },
 };
 
-export default MapMenu;

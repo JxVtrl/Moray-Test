@@ -6,7 +6,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 // Registrando os componentes necessários do Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const ThreeLayer: React.FC = () => {
+export const ThreeLayer: React.FC = () => {
   const { clickedAreaPopulation, setClickedAreaPopulation } = useToast();
 
   if (!clickedAreaPopulation || clickedAreaPopulation.length === 0) return null;
@@ -100,4 +100,3 @@ const ThreeLayer: React.FC = () => {
   );
 };
 
-export default ThreeLayer;

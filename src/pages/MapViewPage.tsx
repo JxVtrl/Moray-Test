@@ -3,12 +3,11 @@ import { MapContainer } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
-import { fetchGeoJson, fetchPopulationData } from '../services/apiService';
-import { useToast } from '../context/ToastContext';
-import { mergeGeoJsonWithPopulation } from '../utils/dataProcessor';
-import { GeoJsonResponse, MergedGeoJsonResponse } from '../interfaces/GeojsonPopulation';
-import ThreeLayer from '../component/ThreeLayer/ThreeLayer.component';
-import MapMenu from '../component/MapMenu/MapMenu.component';
+import { fetchGeoJson, fetchPopulationData } from '../services';
+import { useToast } from '../context';
+import { mergeGeoJsonWithPopulation } from '../utils';
+import { GeoJsonResponse, MergedGeoJsonResponse } from '../interfaces';
+import { ThreeLayer, MapMenu } from '../component';
 
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
@@ -59,32 +58,32 @@ export const MapViewPage: React.FC = () => {
           fillOpacity: 0.4, // Transparência leve para elegância
         })}
         onEachFeature={(feature, layer) => {
-    layer.on({
-      mouseover: (event) => {
-        event.target.setStyle({
-          fillColor: '#ff6600', // Destacar ao passar o mouse
-          fillOpacity: 0.7,
-        });
-        event.target.bringToFront(); // Garante que a feature fique em destaque
-      },
-      mouseout: (event) => {
-        event.target.setStyle({
-          fillColor: '#6c58ff',
-          fillOpacity: 0.4,
-        });
-      },
-      click: (event) => {
-        console.log('Feature clicada:', feature.properties);
+          layer.on({
+            mouseover: (event) => {
+              event.target.setStyle({
+                fillColor: '#ff6600', // Destacar ao passar o mouse
+                fillOpacity: 0.7,
+              });
+              event.target.bringToFront(); // Garante que a feature fique em destaque
+            },
+            mouseout: (event) => {
+              event.target.setStyle({
+                fillColor: '#6c58ff',
+                fillOpacity: 0.4,
+              });
+            },
+            click: (event) => {
+              console.log('Feature clicada:', feature.properties);
 
-        if (feature.properties.populacao) {
-          setClickedAreaPopulation(feature.properties.populacao);
-        } else {
-          console.warn('Nenhuma população encontrada para esta área');
+              if (feature.properties.populacao) {
+                setClickedAreaPopulation(feature.properties.populacao);
+              } else {
+                console.warn('Nenhuma população encontrada para esta área');
+              }
+            },
+          });
         }
-      },
-    });
         }
-      }
       />
     )}
     {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <ThreeLayer />}

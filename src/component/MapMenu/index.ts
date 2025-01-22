@@ -1,0 +1,1 @@
+export { MapMenu } from './MapMenu.component'
