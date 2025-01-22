@@ -59,30 +59,42 @@ export const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ set
 
     return (
         <div className='map_menu'>
-            <h1>Map Menu</h1>
-
             <div className='map_menu_buttons'>
+                <div className='theme_buttons'>
+                    <h2>
+                        Temas
+                    </h2>
+                    <div>
 
-                {buttons.filter(
-                    button => button.type === 'variant'
-                ).map((button, index) => (
-                    <button key={index} onClick={button.click}>
-                        {button.text}
-                    </button>
-                ))}
+                        {buttons.filter(
+                            button => button.type === 'variant'
+                        ).map((button, index) => (
+                            <button key={index} onClick={button.click}>
+                                {button.text}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
 
                 <div className='zoom_buttons'>
+                    <h2>
+                        Zoom
+                    </h2>
+                    <div>
 
-                    {buttons.filter(
-                        button => button.type === 'zoom'
-                    ).map((button, index) => (
-                        <button key={index} onClick={button.click}>
-                            {button.text}
-                        </button>
-                    ))}
+                        {buttons.filter(
+                            button => button.type === 'zoom'
+                        ).map((button, index) => (
+                            <button key={index} onClick={button.click}>
+                                {button.text}
+                            </button>
+                        ))}
+                    </div>
+
                 </div>
-                
-                
+
+
             </div>
         </div>
     );

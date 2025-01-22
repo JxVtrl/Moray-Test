@@ -1,5 +1,4 @@
 .map_menu {
-
     position: absolute;
     bottom: 10px;
     left: 20px;
@@ -11,15 +10,15 @@
     z-index: 1000;
 
 
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-    }
 
     .map_menu_buttons {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
+
+
+
+
 
 
         button {
@@ -31,15 +30,42 @@
             cursor: pointer;
             transition: all 0.3s;
 
+            font-size: 1rem;
+            height: 45px;
+            width: 100px;
+
+
+
             &:hover {
                 background: #000;
                 color: #fff;
             }
         }
 
+        .theme_buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            > div {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+
+
         .zoom_buttons {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+
+            > div {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     }
 }
