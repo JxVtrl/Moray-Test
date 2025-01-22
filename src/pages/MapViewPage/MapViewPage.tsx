@@ -88,7 +88,7 @@ export const MapViewPage: React.FC = () => {
     )}
     {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <EvolutionChart />}
 
-    {clickedAreaPopulation || (
+    {clickedAreaPopulation === null && (
       <MapMenu setTileLayer={setTileLayerUrl} />
     )}
 
