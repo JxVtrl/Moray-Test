@@ -15,36 +15,8 @@
         }
         
         .button {
-            font-size: 27px;
-            font-weight: 600;
-            background-color: #6dcc65;
-            color: #121316;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-transform: uppercase;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-
-            width: 11.17vw;
-            height: 6.67vh;
-
-            transition: all 0.3s ease;
-
-
             @media (max-width: 768px) {
                 display: none;
-            }
-
-            &:hover {
-                background-color: rgb(109, 204, 101, 0.8);
-            }
-
-            &:active {
-                background-color: rgb(109, 204, 101, 0.6);
             }
         }
 
@@ -108,6 +80,7 @@
 
                 font-size: 60px;
                 line-height: 82px;
+                font-weight: 500;
                 letter-spacing: -1.5%;
 
                 text-align: left;
@@ -122,38 +95,14 @@
 
 
         .button {
-            font-size: 22px;
-            font-weight: 600;
-            background-color: #6dcc65;
-            color: #121316;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-transform: uppercase;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-
             width: 160px;
             height: 48px;
 
             margin-top: 32px;
-
-            transition: all 0.3s ease;
+            font-size: 20px;
 
             @media (min-width: 768px) {
                 display: none;
-            }
-
-
-            &:hover {
-                background-color: rgb(109, 204, 101, 0.8);
-            }
-
-            &:active {
-                background-color: rgb(109, 204, 101, 0.6);
             }
         }
 
