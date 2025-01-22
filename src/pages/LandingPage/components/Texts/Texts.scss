@@ -1,0 +1,50 @@
+.texts_container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+     .button {
+        font-size: 27px;
+        font-weight: 600;
+        letter-spacing: 1%;
+        background-color: rgb(109, 204, 101);
+        color: #121316;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        width: 11.17vw;
+        height: 6.67vh;
+
+        margin-bottom: 10.97vh;
+    }
+
+    .title {
+        color: black;
+
+        margin-bottom: 2.22vh;
+
+        font-size: 60px;
+        line-height: 82px;
+        letter-spacing: -1.5%;
+
+        text-align: left;
+    }
+
+    .description {
+        text-align: left;
+        color: #6d6d6d;
+        font-size: 24px;
+    }
+
+
+   
+}

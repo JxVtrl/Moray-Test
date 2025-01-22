@@ -17,12 +17,13 @@ interface AppContextType {
   export const AppProvider = ({ children }: AppProviderProps) => {
       const [showLandingPage, setShowLandingPage] = useState(true);
 
-
-
       const value = useMemo(() => ({
         showLandingPage,
         setShowLandingPage,
-    }), []);
+      }), [
+        showLandingPage,
+        setShowLandingPage,
+    ]);
   
     return (
       <AppContext.Provider value={value}>
