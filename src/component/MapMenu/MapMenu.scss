@@ -1,0 +1,45 @@
+.map_menu {
+
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    z-index: 1000;
+
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .map_menu_buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+        button {
+            padding: 10px 20px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                background: #000;
+                color: #fff;
+            }
+        }
+
+        .zoom_buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

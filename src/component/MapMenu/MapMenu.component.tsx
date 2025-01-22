@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMap } from 'react-leaflet';
+import './MapMenu.scss';
 
 export const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ setTileLayer }) => {
     const map = useMap();
@@ -22,58 +23,68 @@ export const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ set
         {
             click: () => handleThemeChange('normal'),
             text: 'Normal',
+            type: 'variant'
         },
         {
             click: () => handleThemeChange('light'),
             text: 'Light',
+            type: 'variant'
+
         },
         {
             click: () => handleThemeChange('dark'),
             text: 'Dark',
+            type: 'variant'
+
         },
         {
             click: () => handleThemeChange('minimal'),
             text: 'Minimal',
+            type: 'variant'
+
         },
         {
             click: handleZoomIn,
             text: '+',
+            type: 'zoom'
         },
         {
             click: handleZoomOut,
             text: '-',
+            type: 'zoom'
         },
     ]
 
 
 
     return (
-        <div style={styles.footerMenu}>
-            {buttons.map((button, index) => (
-                <button key={index} onClick={button.click}>
-                    {button.text}
-                </button>
-            ))}
+        <div className='map_menu'>
+            <h1>Map Menu</h1>
+
+            <div className='map_menu_buttons'>
+
+                {buttons.filter(
+                    button => button.type === 'variant'
+                ).map((button, index) => (
+                    <button key={index} onClick={button.click}>
+                        {button.text}
+                    </button>
+                ))}
+
+                <div className='zoom_buttons'>
+
+                    {buttons.filter(
+                        button => button.type === 'zoom'
+                    ).map((button, index) => (
+                        <button key={index} onClick={button.click}>
+                            {button.text}
+                        </button>
+                    ))}
+                </div>
+                
+                
+            </div>
         </div>
     );
-};
-
-import { CSSProperties } from 'react';
-
-const styles: { footerMenu: CSSProperties } = {
-    footerMenu: {
-        position: 'absolute',
-        bottom: '10px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex',
-        gap: '10px',
-        padding: '10px 20px',
-        background: 'rgba(0, 0, 0, 0.8)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-        color: '#fff',
-        zIndex: 1000,
-    },
 };
 
