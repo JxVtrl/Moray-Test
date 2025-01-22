@@ -1,0 +1,27 @@
+.back_button {
+ position: absolute;
+  top: 20px;
+  left: 20px;
+    z-index: 1000;
+ background: rgba(255, 255, 255, 0.8); // Fundo semi-transparente
+
+  padding: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  svg {
+    width: 35px;  // Ajuste conforme necessário
+    height: auto;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+
+  @media (max-width: 768px) {
+    top: 10px;
+    left: 10px;
+  }
+}

@@ -7,7 +7,7 @@ import { fetchGeoJson, fetchPopulationData } from '../../services';
 import { useToast } from '../../context';
 import { mergeGeoJsonWithPopulation } from '../../utils';
 import { GeoJsonResponse, MergedGeoJsonResponse } from '../../interfaces';
-import { EvolutionChart, MapMenu, Logo } from '../../component';
+import { EvolutionChart, MapMenu, Logo, BackButton } from '../../component';
 
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
@@ -90,6 +90,7 @@ export const MapViewPage: React.FC = () => {
 
     <MapMenu setTileLayer={setTileLayerUrl} />
 
-     <Logo />
+    <Logo />
+    <BackButton />
   </MapContainer>);
 }
