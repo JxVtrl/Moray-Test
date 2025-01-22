@@ -12,7 +12,7 @@ import { EvolutionChart, MapMenu, Logo, BackButton } from '../../component';
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null);
 
-  const { setClickedAreaPopulation, clickedAreaPopulation } = useToast();
+  const { setClickedArea, clickedArea } = useToast();
 
   const [tileLayerUrl, setTileLayerUrl] = useState<string>(
     'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
@@ -80,7 +80,7 @@ export const MapViewPage: React.FC = () => {
               },
               click: (event) => {
                 if (feature.properties.populacao) {
-                  setClickedAreaPopulation(feature.properties.populacao);
+                  setClickedArea(feature);
                 } else {
                   console.warn('Nenhuma população encontrada para esta área');
                 }
@@ -112,9 +112,9 @@ export const MapViewPage: React.FC = () => {
         />
       )}
 
-      {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <EvolutionChart />}
+      {clickedArea && clickedArea.properties.populacao.length > 0 && <EvolutionChart />}
 
-      {clickedAreaPopulation === null && <MapMenu setTileLayer={setTileLayerUrl} />}
+      {clickedArea === null && <MapMenu setTileLayer={setTileLayerUrl} />}
 
       <Logo />
       <BackButton />

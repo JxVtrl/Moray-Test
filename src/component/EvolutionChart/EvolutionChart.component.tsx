@@ -7,16 +7,16 @@ import './EvolutionChart.scss'
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export const EvolutionChart: React.FC = () => {
-  const { clickedAreaPopulation, setClickedAreaPopulation } = useToast();
+  const { clickedArea, setClickedArea } = useToast();
 
-  if (!clickedAreaPopulation || clickedAreaPopulation.length === 0) return null;
+  if (!clickedArea || clickedArea.properties.populacao.length === 0) return null;
 
   const data = {
-    labels: clickedAreaPopulation.map((item) => item.ano),
+    labels: clickedArea.properties.populacao.map((item) => item.ano),
     datasets: [
       {
         label: 'População',
-        data: clickedAreaPopulation.map((item) => item.populacao),
+        data: clickedArea.properties.populacao.map((item) => item.populacao),
         backgroundColor: 'rgba(54, 162, 235, 0.6)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 2,
@@ -61,11 +61,17 @@ export const EvolutionChart: React.FC = () => {
     >
       <button
         className='close_button'
-        onClick={() => setClickedAreaPopulation(null)}
+        onClick={() => setClickedArea(null)}
       >
         X
       </button>
-      <h2 className='evolution_chart_title' >Evolução Populacional</h2>
+      <h2 className='evolution_chart_title' >Evolução Populacional
+        <br />
+        <span className='evolution_chart_subtitle' >
+          {clickedArea?.properties.name || 'Região Desconhecida'}
+        </span>
+
+      </h2>
       <Bar data={data} options={options} width={300} height={300} />
     </div>
   );
