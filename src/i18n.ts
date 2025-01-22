@@ -9,8 +9,8 @@ i18n
   .use(LanguageDetector) // Detecta o idioma automaticamente
   .use(initReactI18next) // React binding
   .init({
-    fallbackLng: 'en', // Idioma padrão caso o detectado não tenha tradução
-    debug: import.meta.env.MODE === 'development', // Ativa logs no modo dev
+    fallbackLng: 'pt', // Idioma padrão caso o detectado não tenha tradução
+    debug: import.meta.env.VITE_APP_ENV === 'development', // Ativa logs no modo dev
     interpolation: {
       escapeValue: false, // React já protege contra XSS, não precisa escapar
     },

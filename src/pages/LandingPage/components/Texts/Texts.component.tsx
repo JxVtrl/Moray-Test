@@ -3,10 +3,12 @@ import React from 'react';
 import './Texts.scss';
 import { Logo3D } from '../../../../component';
 import { BlurText } from "../../../../blocks/TextAnimations/BlurText";
+import TranslationSelector from '../../../../component/TranslationSelector/TranslationSelector.component';
+import { useTranslation } from 'react-i18next';
 
 export const Texts: React.FC = () => {
     const { setShowLandingPage } = useApp()
-
+    const { t } = useTranslation();
     const handleAnimationComplete = () => {
         console.log('Animation completed!');
     }
@@ -18,11 +20,15 @@ export const Texts: React.FC = () => {
                     className='button'
                     onClick={() => setShowLandingPage(false)}
                     >
-                Entrar
+                {t('start')}
                 </button>
                     
                 <div className='logo_container_texts'>
                     <Logo3D/>
+                </div>
+
+                <div>
+                    <TranslationSelector />
                 </div>
             </div>
 
@@ -31,7 +37,7 @@ export const Texts: React.FC = () => {
                 <div className='texts'>
                     <h1 className='title'>
                         <BlurText
-                            text="Bem-vindo ao Teste Moray.Ai"
+                            text={t('welcome')}
                             delay={150}
                             animateBy="words"
                             direction="top"
@@ -42,7 +48,7 @@ export const Texts: React.FC = () => {
                     </h1>
                     <p className='description'>
                         <BlurText
-                            text="Este teste tem como objetivo avaliar as habilidades em front-end. Clique acima para iniciar."
+                            text={t('description')}
                             delay={250}
                             animateBy="words"
                             direction="top"

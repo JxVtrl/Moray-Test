@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "types": [
+      "vite/client"
+    ],
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
@@ -10,6 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "resolveJsonModule": true,
+    "isolatedModules": true,
   },
   "include": [
     "src"
