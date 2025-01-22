@@ -1,6 +1,6 @@
 import React from 'react';
 import './Texts.scss';
-import { Logo3D } from '../../../../component';
+import { Logo, Logo3D } from '../../../../component';
 import { BlurText } from "../../../../blocks/TextAnimations/BlurText";
 import TranslationSelector from '../../../../component/TranslationSelector/TranslationSelector.component';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,7 @@ export const Texts: React.FC = () => {
                 <EnterButton/>
                     
                 <div className='logo_container_texts'>
-                    <Logo3D/>
+                    <img src='/brand/moray_black.png' alt='Moray.AI' />
                 </div>
 
                 <TranslationSelector />

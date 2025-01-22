@@ -22,6 +22,11 @@
         }
 
         .logo_container_texts {
+            margin-top: 32px;
+            img {
+                width: 100%;
+            }
+
             @media (min-width: 768px) {
                 display: none;
             }
