@@ -11,9 +11,9 @@
     flex-direction: column;
     gap: 20vh;
 
-    .landing_content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+    @media (max-width: 768px) {
+        padding-top: 5vh;
+        padding-inline: 5vw;
+        gap: 10vh;
     }
 }

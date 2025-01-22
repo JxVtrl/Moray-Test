@@ -7,10 +7,7 @@ import { Footer } from '../../sections';
 export const LandingPage: React.FC = () => {
   return (
     <div className='landing_container'>
-      <div className='landing_content'>
-        <Texts/>
-        <Logo3D />
-      </div>
+      <Texts />
       <Footer />
     </div>
   );

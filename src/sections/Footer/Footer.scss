@@ -3,6 +3,8 @@
     flex-direction: column;
     gap: 2.5rem;
 
+    padding-bottom: 48px;
+
 
     .footer-content {
         display: grid;
@@ -10,6 +12,10 @@
 
         margin-right: 7.81vw;
 
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
 
 
         .footer-section {
@@ -39,6 +45,10 @@
 
         .contact {
             text-align: right;
+
+            @media screen and (max-width: 768px) {
+                text-align: left;
+            }
         }
     }
 

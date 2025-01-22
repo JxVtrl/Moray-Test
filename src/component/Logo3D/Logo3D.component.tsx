@@ -31,7 +31,7 @@ export const RotatingLogo: React.FC = () => {
 export const Logo3D: React.FC = () => {
   return (
     <Canvas
-      style={{ width: '100%', height: '100%', maxHeight: '300px' }}
+      style={{ width: '100%', height: '100%', maxHeight: 300 }}
       camera={{ position: [0, 0, 5], fov: 50 }}
     >
       <ambientLight intensity={0.8} />

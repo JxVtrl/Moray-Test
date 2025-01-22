@@ -2,7 +2,8 @@ import React from 'react';
 import './Footer.scss'
 
 export const Footer: React.FC = () => {
-  return (<footer className="footer">
+  return (
+    <footer className="footer">
       <div className="footer-content">
         <div className="footer-section about">
           <h2>Sobre Mim</h2>
@@ -12,17 +13,27 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="footer-section contact">
-        <h2>Contato</h2>
-        <div>
-
-          <p>Email: <a href="mailto:joaoviniciusvitral@hotmail.com">joaoviniciusvitral@hotmail.com</a></p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/joao-vinicius-vitral/" target="_blank" rel="noopener noreferrer">@joao-vinicius-vitral</a></p>
-        </div>
+          <h2>Contato</h2>
+          <div>
+            <p>
+              Email:
+              <a href="mailto:joaoviniciusvitral@hotmail.com">
+                joaoviniciusvitral@hotmail.com
+              </a>
+            </p>
+            <p>
+              LinkedIn:
+              <a href="https://www.linkedin.com/in/joao-vinicius-vitral/" target="_blank" rel="noopener noreferrer">
+                @joao-vinicius-vitral
+              </a>
+            </p>
+          </div>
         </div>
       </div>
 
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} João. Todos os direitos reservados.</p>
       </div>
-    </footer>);
+    </footer>
+  );
 }
