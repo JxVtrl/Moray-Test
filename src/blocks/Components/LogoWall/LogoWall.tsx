@@ -1,7 +1,7 @@
 /*
-	jsrepo 1.28.2
-	Installed from https://reactbits.dev/default/
-	22-01-2025
+  jsrepo 1.28.2
+  Installed from https://reactbits.dev/default/
+  22-01-2025
 */
 
 import { useState, CSSProperties } from 'react';
