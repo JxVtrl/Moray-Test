@@ -6,9 +6,13 @@
     justify-self: end;
     align-self: end;
 
+    @media (max-width: 768px) {
+        justify-self: unset;
+        align-self: unset;
+    }
+
   select {
     appearance: none;
-    background-color: #ffffff;
     border: 2px solid #ddd;
     border-radius: 8px;
     padding: 10px 40px 10px 20px;
@@ -27,16 +31,5 @@
     &:focus {
       border-color: rgb(109, 204, 101);
     }
-  }
-
-  &::after {
-    content: '▼';
-    font-size: 14px;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgb(109, 204, 101);
-    pointer-events: none;
   }
 }

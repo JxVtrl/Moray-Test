@@ -1,46 +1,77 @@
-import React, { Suspense, useRef, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { Suspense, useRef, useEffect, useState } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+import './Logo3D.scss';
 
 export const RotatingLogo: React.FC = () => {
   const logoRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/brand/models/logo.glb');
+  const { viewport } = useThree();
 
-  // Ajustando a rotação inicial para corrigir a posição da logo
   useEffect(() => {
     if (logoRef.current) {
-      logoRef.current.rotation.x = Math.PI; // Gira 180° no eixo X para corrigir a inversão
-      logoRef.current.rotation.y = Math.PI; // Gira 180° no eixo Y para corrigir a rotação de costas
-      logoRef.current.rotation.z = 0; // Garante que o eixo Z esteja correto
-    }
-  }, []);
+      // Adjust scale for different screen sizes
+      const scaleFactor = viewport.width < 768 ? 0.03 : 0.05;
+      logoRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-  useFrame(({ clock }) => {
+      // Center the model based on bounding box
+      const box = new THREE.Box3().setFromObject(scene);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      logoRef.current.position.set(-center.x, -center.y, -center.z);
+
+      logoRef.current.rotation.x = Math.PI; // Fix orientation
+      logoRef.current.rotation.y = Math.PI;
+    }
+  }, [scene, viewport.width]);
+
+  useFrame(() => {
     if (logoRef.current) {
-      const elapsedTime = clock.getElapsedTime();
-      logoRef.current.rotation.y += 0.005; // Rotação suave para incentivar a interação
+      logoRef.current.rotation.y += 0.005; // Continuous rotation
     }
   });
 
-  return <primitive object={scene} ref={logoRef} scale={0.05} position={[0, -0.5, 0]} />;
+  return <primitive object={scene} ref={logoRef} />;
 };
 
-
-
 export const Logo3D: React.FC = () => {
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+  const [fov, setFov] = useState(window.innerWidth < 768 ? 25 : 40);
+
+  // Function to update FOV based on screen size
+  const handleResize = () => {
+    if (canvasContainerRef.current) {
+      setFov(window.innerWidth < 768 ? 25 : 40);
+
+      const width = canvasContainerRef.current.clientWidth;
+      const height = canvasContainerRef.current.clientHeight;
+      const aspectRatio = width / height;
+
+      canvasContainerRef.current.style.height = aspectRatio < 1 ? '150px' : '250px';
+      canvasContainerRef.current.style.width = '100%';
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <Canvas
-      style={{ width: '100%', height: '100%', maxHeight: 300 }}
-      camera={{ position: [0, 0, 5], fov: 50 }}
-    >
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-      <Suspense fallback={null}>
-        <RotatingLogo />
-      </Suspense>
-      <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-    </Canvas>
+    <div ref={canvasContainerRef} className="logo-3d-container">
+      <Canvas
+        camera={{ position: [0, 2, 5], fov }}
+      >
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <Suspense fallback={null}>
+          <RotatingLogo />
+        </Suspense>
+        <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.2} />
+      </Canvas>
+    </div>
   );
 };
 
