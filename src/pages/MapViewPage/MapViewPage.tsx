@@ -7,7 +7,7 @@ import { fetchGeoJson, fetchPopulationData } from '../../services';
 import { useToast } from '../../context';
 import { mergeGeoJsonWithPopulation } from '../../utils';
 import { GeoJsonResponse, MergedGeoJsonResponse } from '../../interfaces';
-import { ThreeLayer, MapMenu } from '../../component';
+import { EvolutionChart, MapMenu } from '../../component';
 
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
@@ -52,23 +52,23 @@ export const MapViewPage: React.FC = () => {
       <GeoJSON
         data={geojson as GeoJsonResponse}
         style={() => ({
-          color: '#6c58ff', // Cor padrão
-          weight: 1.5,      // Espessura das linhas
-          fillColor: '#6c58ff',
-          fillOpacity: 0.4, // Transparência leve para elegância
+          color: 'rgb(109, 204, 101)',
+          weight: 1.5,
+          fillColor: 'rgb(109, 204, 101)',
+          fillOpacity: 0.4,
         })}
         onEachFeature={(feature, layer) => {
           layer.on({
             mouseover: (event) => {
               event.target.setStyle({
-                fillColor: '#ff6600', // Destacar ao passar o mouse
+                fillColor: 'rgb(7, 45, 46)',
                 fillOpacity: 0.7,
               });
-              event.target.bringToFront(); // Garante que a feature fique em destaque
+              event.target.bringToFront();
             },
             mouseout: (event) => {
               event.target.setStyle({
-                fillColor: '#6c58ff',
+                fillColor: 'rgb(109, 204, 101)',
                 fillOpacity: 0.4,
               });
             },
@@ -86,7 +86,7 @@ export const MapViewPage: React.FC = () => {
         }
       />
     )}
-    {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <ThreeLayer />}
+    {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <EvolutionChart />}
 
     <MapMenu setTileLayer={setTileLayerUrl} />
   </MapContainer>);

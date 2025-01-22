@@ -1,12 +1,12 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { useToast } from '../../context/ToastContext';
+import { useToast } from '../../context';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import './EvolutionChart.scss'
 
-// Registrando os componentes necessários do Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export const ThreeLayer: React.FC = () => {
+export const EvolutionChart: React.FC = () => {
   const { clickedAreaPopulation, setClickedAreaPopulation } = useToast();
 
   if (!clickedAreaPopulation || clickedAreaPopulation.length === 0) return null;
@@ -43,13 +43,13 @@ export const ThreeLayer: React.FC = () => {
           display: false,
         },
         ticks: {
-          color: 'white', // Cor branca para os rótulos do eixo X
+          color: 'white',
         },
       },
       y: {
         beginAtZero: true,
         ticks: {
-          color: 'white', // Cor branca para os rótulos do eixo Y
+          color: 'white',
         },
       },
     },
@@ -57,44 +57,15 @@ export const ThreeLayer: React.FC = () => {
 
   return (
     <div
-      style={{
-        position: 'absolute',
-        zIndex: 999,
-        bottom: 25,
-        right: '10%',
-        width: '350px',
-        height: '350px',
-        background: 'rgba(0, 0, 0, 0.6)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-        padding: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+      className='evolution_chart_container'
     >
       <button
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '20px',
-          background: 'linear-gradient(to right, #ff4d4d, #ff0000)',
-          border: 'none',
-          color: 'white',
-          fontSize: '20px',
-          fontWeight: 'bold',
-          padding: '8px 14px',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          boxShadow: '0 5px 15px rgba(255, 0, 0, 0.3)',
-        }}
+        className='close_button'
         onClick={() => setClickedAreaPopulation(null)}
       >
         X
       </button>
-      <h2 style={{ color: 'white', marginBottom: '10px' }}>Evolução Populacional</h2>
+      <h2 className='evolution_chart_title' >Evolução Populacional</h2>
       <Bar data={data} options={options} width={300} height={300} />
     </div>
   );

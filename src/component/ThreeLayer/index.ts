@@ -1,1 +1,0 @@
-export {ThreeLayer} from './ThreeLayer.component'
