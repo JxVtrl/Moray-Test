@@ -17,9 +17,54 @@
         .button {
             font-size: 27px;
             font-weight: 600;
-            letter-spacing: 1%;
             background-color: rgb(109, 204, 101);
             color: #121316;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+
+            width: 11.17vw;
+            height: 6.67vh;
+
+            transition: all 0.3s ease;
+
+
+            @media (max-width: 768px) {
+                width: 30vw;
+                height: 6.67vh;
+            }
+
+            &:hover {
+                background-color: rgb(109, 204, 101, 0.8);
+            }
+
+            &:active {
+                background-color: rgb(109, 204, 101, 0.6);
+            }
+        }
+
+        .logo_container_texts {
+            max-width: 50vw;
+            max-height: 150px;
+            margin-bottom: 24px;
+
+            @media (min-width: 768px) {
+                display: none;
+            }
+        }
+
+
+
+        .custom-class {
+            font-size: 27px;
+            font-weight: 600;
+            letter-spacing: 1%;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -38,16 +83,6 @@
             @media (max-width: 768px) {
                 width: 30vw;
                 height: 6.67vh;
-            }
-        }
-
-        .logo_container_texts {
-            max-width: 50vw;
-            max-height: 150px;
-            margin-bottom: 24px;
-
-            @media (min-width: 768px) {
-                display: none;
             }
         }
     }

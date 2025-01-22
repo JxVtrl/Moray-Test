@@ -20,15 +20,22 @@
     "analyze": "vite build --mode analyze"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.6.0",
     "@react-leaflet/core": "^3.0.0",
+    "@react-spring/web": "^9.7.5",
     "@react-three/drei": "^9.121.3",
     "@react-three/fiber": "^8.17.12",
     "axios": "^1.6.7",
     "chart.js": "^4.4.7",
+    "framer-motion": "^11.18.2",
+    "i18next": "^24.2.1",
+    "i18next-browser-languagedetector": "^8.0.2",
+    "i18next-http-backend": "^3.0.1",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^15.4.0",
     "react-leaflet": "^4.2.1",
     "three": "^0.172.0"
   },

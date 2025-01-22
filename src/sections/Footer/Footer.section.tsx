@@ -1,15 +1,49 @@
 import React from 'react';
 import './Footer.scss'
+import SplitText from '../../blocks/TextAnimations/SplitText/SplitText';
 
 export const Footer: React.FC = () => {
+  const handleAnimationComplete = () => {
+    console.log('Animation completed!');
+  }
+
+
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section about">
-          <h2>Sobre Mim</h2>
-          <p>
-            Sou um entusiasta de tecnologia com sólida experiência em desenvolvimento de software, especializado em front-end e focado em criar soluções digitais escaláveis, eficientes e centradas no usuário. Minha expertise inclui Next.js, React.js, TypeScript, e ferramentas modernas como Docker e Azure DevOps, que aplico para transformar ideias em produtos robustos e de alto impacto.
-          </p>
+          <SplitText
+            text="Sobre Mim"
+            className="title"
+            delay={150}
+            animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+            animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+            onLetterAnimationComplete={handleAnimationComplete}
+          />
+          
+
+          <SplitText
+            text={(
+            <>
+              Acredito que a tecnologia tem o poder de transformar vidas e resolver problemas reais, tornando o mundo mais conectado e acessível. Meu propósito é usar o desenvolvimento de software para simplificar o complexo e criar experiências digitais que impactem positivamente as pessoas.
+              <br/><br/>
+              Faço isso utilizando ferramentas modernas como Next.js, React.js, TypeScript, Docker e Azure DevOps, sempre focado em colaboração, escalabilidade e uma abordagem centrada no usuário.
+              <br/><br/>
+              Como resultado, desenvolvo soluções digitais robustas e intuitivas que ajudam empresas a se destacarem no mercado, enquanto proporcionam experiências rápidas, eficientes e envolventes para os usuários finais. Em essência, transformo ideias em ferramentas que conectam, resolvem e inspiram.
+            </>
+            )}
+            className="description"
+            delay={150}
+            animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+            animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+            onLetterAnimationComplete={handleAnimationComplete}
+            />
         </div>
 
         <div className="footer-section contact">
