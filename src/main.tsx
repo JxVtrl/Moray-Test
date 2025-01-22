@@ -1,8 +1,8 @@
-import './main.scss';
+import './styles/global.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ToastProvider } from './context/ToastContext';
+import { ToastProvider, AppProvider } from './context';
 
 export const initAPIMock = async () => {
   try {
@@ -22,9 +22,11 @@ const initApplication = async () => {
   if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
       <React.StrictMode>
-        <ToastProvider>
-          <App />
-        </ToastProvider>
+        <AppProvider>
+          <ToastProvider>
+            <App />
+          </ToastProvider>
+        </AppProvider>
       </React.StrictMode>
     );
   } else {

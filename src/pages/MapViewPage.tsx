@@ -10,14 +10,12 @@ import { GeoJsonResponse, MergedGeoJsonResponse } from '../interfaces/GeojsonPop
 import ThreeLayer from '../component/ThreeLayer/ThreeLayer.component';
 import MapMenu from '../component/MapMenu/MapMenu.component';
 
-const MapViewPage: React.FC = () => {
+export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
 
   const { setClickedAreaPopulation, clickedAreaPopulation } = useToast()
 
   const [tileLayerUrl, setTileLayerUrl] = useState<string>('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
-
- 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,30 +58,33 @@ const MapViewPage: React.FC = () => {
           fillColor: '#6c58ff',
           fillOpacity: 0.4, // Transparência leve para elegância
         })}
-        eventHandlers={{
-          mouseover: (event) => {
-            event.target.setStyle({
-              fillColor: '#ff6600', // Destacar ao passar o mouse
-              fillOpacity: 0.7,
-            });
-          },
-          mouseout: (event) => {
-            event.target.setStyle({
-              fillColor: '#6c58ff',
-              fillOpacity: 0.4,
-            });
-          },
-          click: (event) => {
-            const feature = event.sourceTarget.feature;
-            console.log('Feature clicada:', feature.properties);
+        onEachFeature={(feature, layer) => {
+    layer.on({
+      mouseover: (event) => {
+        event.target.setStyle({
+          fillColor: '#ff6600', // Destacar ao passar o mouse
+          fillOpacity: 0.7,
+        });
+        event.target.bringToFront(); // Garante que a feature fique em destaque
+      },
+      mouseout: (event) => {
+        event.target.setStyle({
+          fillColor: '#6c58ff',
+          fillOpacity: 0.4,
+        });
+      },
+      click: (event) => {
+        console.log('Feature clicada:', feature.properties);
 
-            if (feature.properties.populacao) {
-              setClickedAreaPopulation(feature.properties.populacao);
-            } else {
-              console.warn('Nenhuma população encontrada para esta área');
-            }
-          },
-        }}
+        if (feature.properties.populacao) {
+          setClickedAreaPopulation(feature.properties.populacao);
+        } else {
+          console.warn('Nenhuma população encontrada para esta área');
+        }
+      },
+    });
+        }
+      }
       />
     )}
     {clickedAreaPopulation && clickedAreaPopulation.length > 0 && <ThreeLayer />}
@@ -91,5 +92,3 @@ const MapViewPage: React.FC = () => {
     <MapMenu setTileLayer={setTileLayerUrl} />
   </MapContainer>);
 }
-
-export default MapViewPage;

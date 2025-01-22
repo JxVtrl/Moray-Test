@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
-const RotatingLogo: React.FC = () => {
+export const RotatingLogo: React.FC = () => {
   const logoRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/brand/models/logo.glb');
 
@@ -28,7 +28,7 @@ const RotatingLogo: React.FC = () => {
 
 
 
-const Logo3D: React.FC = () => {
+export const Logo3D: React.FC = () => {
   return (
     <Canvas
       style={{ width: '100%', height: '100%', maxHeight: '300px' }}

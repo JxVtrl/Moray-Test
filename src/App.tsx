@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import LandingPage from './pages/LandingPage';
-import MapView from './pages/MapViewPage';
+import React from 'react';
+import { LandingPage, MapViewPage } from './pages';
+import { useApp } from './context';
 
 const App: React.FC = () => {
-  const [showLandingPage, setShowLandingPage] = useState(true);
-
+  const { showLandingPage } = useApp()
   return (
     <>
       {showLandingPage ? (
-        <LandingPage onEnter={() => setShowLandingPage(false)} />
+        <LandingPage />
       ) : (
-        <MapView />
+        <MapViewPage />
       )}
     </>
   );
