@@ -1,5 +1,5 @@
-import { useApp } from '../context';
-import { Logo3D } from '../component';
+import { useApp } from '../../context';
+import { Logo3D } from '../../component';
 import React from 'react';
 
 export const LandingPage: React.FC = () => {
@@ -7,6 +7,11 @@ export const LandingPage: React.FC = () => {
   return (
     <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, height: '100vh' }}>
       <Logo3D />
+
+      <div>
+        
+
+
       <h1 style={{ color: 'black' }}>Bem-vindo ao Teste Moray.Ai</h1>
       <p style={{ color: 'black', fontSize: '18px', maxWidth: '500px', margin: '0 auto' }}>
         Este teste tem como objetivo avaliar as habilidades em front-end. Clique abaixo para iniciar.
@@ -24,7 +29,9 @@ export const LandingPage: React.FC = () => {
         }}
       >
         Entrar no Teste
-      </button>
+        </button>
+    </div>
+        
     </div>
   );
 };

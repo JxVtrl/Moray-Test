@@ -3,11 +3,11 @@ import { MapContainer } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
-import { fetchGeoJson, fetchPopulationData } from '../services';
-import { useToast } from '../context';
-import { mergeGeoJsonWithPopulation } from '../utils';
-import { GeoJsonResponse, MergedGeoJsonResponse } from '../interfaces';
-import { ThreeLayer, MapMenu } from '../component';
+import { fetchGeoJson, fetchPopulationData } from '../../services';
+import { useToast } from '../../context';
+import { mergeGeoJsonWithPopulation } from '../../utils';
+import { GeoJsonResponse, MergedGeoJsonResponse } from '../../interfaces';
+import { ThreeLayer, MapMenu } from '../../component';
 
 export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null)
