@@ -8,13 +8,15 @@ export const MapMenu: React.FC<{ setTileLayer: (url: string) => void }> = ({ set
     const handleZoomIn = () => map.zoomIn();
     const handleZoomOut = () => map.zoomOut();
 
+    const apiKey = import.meta.env.VITE_MAP_KEY 
+    
     const handleThemeChange = (theme: string) => {
         const baseUrl = 'https://tiles.stadiamaps.com/tiles/';
         const themeUrls: { [key: string]: string } = {
-            normal: `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png`,
-            light: `${baseUrl}stamen_toner_lite/{z}/{x}/{y}{r}.png`,
-            dark: `${baseUrl}stamen_toner/{z}/{x}/{y}{r}.png`,
-            minimal: `${baseUrl}stamen_toner_background/{z}/{x}/{y}{r}.png`,
+            normal: `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
+            light: `${baseUrl}stamen_toner_lite/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
+            dark: `${baseUrl}stamen_toner/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
+            minimal: `${baseUrl}stamen_toner_background/{z}/{x}/{y}{r}.png?api_key=${apiKey}`,
         };
         setTileLayer(themeUrls[theme]);
     };
