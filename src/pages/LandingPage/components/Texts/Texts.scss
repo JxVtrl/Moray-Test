@@ -36,8 +36,7 @@
 
 
             @media (max-width: 768px) {
-                width: 30vw;
-                height: 6.67vh;
+                display: none;
             }
 
             &:hover {
@@ -120,6 +119,44 @@
                 font-size: 24px;
             }
         }
+
+
+        .button {
+            font-size: 22px;
+            font-weight: 600;
+            background-color: #6dcc65;
+            color: #121316;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+
+            width: 160px;
+            height: 48px;
+
+            margin-top: 32px;
+
+            transition: all 0.3s ease;
+
+            @media (min-width: 768px) {
+                display: none;
+            }
+
+
+            &:hover {
+                background-color: rgb(109, 204, 101, 0.8);
+            }
+
+            &:active {
+                background-color: rgb(109, 204, 101, 0.6);
+            }
+        }
+
 
 
 

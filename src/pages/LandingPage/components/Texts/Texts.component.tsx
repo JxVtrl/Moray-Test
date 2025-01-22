@@ -57,6 +57,13 @@ export const Texts: React.FC = () => {
                     </p>
                 </div>
 
+                <button
+                    className='button'
+                    onClick={() => setShowLandingPage(false)}
+                    >
+                {t('start')}
+                </button>
+
                 <div className='logo_container'>
                     <Logo3D />
                 </div>
