@@ -30,7 +30,7 @@ export const Texts: React.FC = () => {
                     <BlurText
                         text={t('welcome')}
                         delay={150}
-                        animateBy="words"
+                        animateBy="letters"
                         direction="top"
                         onAnimationComplete={handleAnimationComplete}
                         className="title"
