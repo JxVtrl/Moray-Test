@@ -7,7 +7,10 @@ interface AppContextType {
   setShowLandingPage: (show: boolean) => void;
   showInstructionsModal: boolean;
   setShowInstructionsModal: (show: boolean) => void;
-
+  showLoading: boolean;
+  setShowLoading: (show: boolean) => void;
+  showMap: boolean;
+  setShowMap: (show: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -19,17 +22,27 @@ interface AppProviderProps {
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [showInstructionsModal, setShowInstructionsModal] = useState(true);
-
+ const [showLoading, setShowLoading] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  
   const value = useMemo(() => ({
     showLandingPage,
     setShowLandingPage,
     showInstructionsModal,
     setShowInstructionsModal,
+    showLoading,
+    setShowLoading,
+    showMap,
+    setShowMap
   }), [
     showLandingPage,
     setShowLandingPage,
     showInstructionsModal,
     setShowInstructionsModal,
+    showLoading,
+    setShowLoading,
+    showMap,
+    setShowMap
   ]);
 
   return (

@@ -4,9 +4,8 @@ import { useApp } from './context';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
-  const { showLandingPage } = useApp();
-  const [showLoading, setShowLoading] = useState(false);
-  const [showMap, setShowMap] = useState(false);
+  const { showLandingPage, setShowLoading, setShowMap, showMap, showLoading } = useApp();
+ 
 
   useEffect(() => {
     if (!showLandingPage) {

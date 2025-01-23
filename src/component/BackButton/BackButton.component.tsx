@@ -4,6 +4,10 @@ import './BackButton.scss';
 import { useApp } from '../../context';
 
 export const BackButton: React.FC = () => {
-  const {setShowLandingPage} =useApp()
-  return <button onClick={()=>setShowLandingPage(true)} className='back_button' ><BaselineArrowBack/></button>;
+  const {setShowLandingPage, setShowMap, setShowLoading} =useApp()
+  return <button onClick={() => {
+    setShowLandingPage(true)
+    setShowMap(false)
+    setShowLoading(false)
+  }} className='back_button' ><BaselineArrowBack /></button>;
 }
