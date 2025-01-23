@@ -115,7 +115,7 @@ const {showInstructionsModal}=useApp()
 
       {clickedArea && clickedArea.properties.populacao.length > 0 && <EvolutionChart />}
 
-      {clickedArea === null && <MapMenu setTileLayer={setTileLayerUrl} />}
+      {clickedArea === null && showInstructionsModal === false && <MapMenu setTileLayer={setTileLayerUrl} />}
 
       {
         showInstructionsModal && (
