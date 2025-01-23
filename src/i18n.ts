@@ -11,6 +11,10 @@ i18n
   .init({
     fallbackLng: 'pt', // Idioma padrão caso o detectado não tenha tradução
     debug: import.meta.env.VITE_APP_ENV === 'development', // Ativa logs no modo dev
+     detection: {
+      order: ['localStorage', 'cookie', 'navigator', 'htmlTag'], // Ordem de detecção
+      caches: ['localStorage', 'cookie'], // Salva a seleção do usuário
+    },
     interpolation: {
       escapeValue: false, // React já protege contra XSS, não precisa escapar
     },

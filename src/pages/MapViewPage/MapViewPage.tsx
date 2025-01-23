@@ -14,7 +14,7 @@ export const MapViewPage: React.FC = () => {
   const [geojson, setGeoJson] = useState<MergedGeoJsonResponse | null>(null);
 
   const { setClickedArea, clickedArea } = useToast();
-const {showInstructionsModal}=useApp()
+  const { showInstructionsModal } = useApp()
   const [tileLayerUrl, setTileLayerUrl] = useState<string>(
     'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
   );
@@ -90,7 +90,7 @@ const {showInstructionsModal}=useApp()
 
 
             const last_feature_population = feature.properties.populacao[feature.properties.populacao.length - 1].populacao
-            
+
 
 
             layer.bindTooltip(
@@ -119,8 +119,8 @@ const {showInstructionsModal}=useApp()
 
       {
         showInstructionsModal && (
-          <InstructionsModal/>
-)
+          <InstructionsModal />
+        )
       }
 
       <Logo />
